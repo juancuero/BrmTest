@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
@@ -22,5 +20,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::get('products/{product}/inventory/create', 'InventoryController@create')->name('inventory.create');
 //Route::post('products/{product}/inventory/', 'InventoryController@store')->name('inventory.store');
 
+Route::get('/', 'InventoryController@welcome')->name('inventory.welcome');
 Route::resource('inventory','InventoryController');
 

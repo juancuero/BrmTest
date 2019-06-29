@@ -102,6 +102,13 @@ class InventoryController extends Controller
         //
     }
 
+    public function welcome()
+    {
+        $products = InventoryController::getAvailableProducts();
+
+        return view('inventory.welcome',compact('products'));
+    }
+
     public function getAvailableProducts()
     {
         $date = Carbon::now()->addDays(10);
