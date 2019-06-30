@@ -26,3 +26,4 @@ Route::resource('inventory','InventoryController');
 
 Route::get('cart/', 'CartController@show')->name('cart-show');
 Route::get('cart/add/{product}/{price}', 'CartController@add')->name('cart-add');
+Route::get('cart/delete/{product}', 'CartController@delete')->name('cart-delete');

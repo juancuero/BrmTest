@@ -30,10 +30,21 @@ class CartController extends Controller
     	$cart = \Session::get('cart');
         $product->cantidad = 1;
     	$product->price = $price;
+        $units =InventoryController::getQuantityAvailableByProductAndPrice($product->id,$price);
+        $product->total = $units;
     	$cart[$product->id] = $product;
     	\Session::put('cart',$cart);
         \Session::flash('message','Elemento agregado Correctamente');
     	return redirect()->route('cart-show');
+    }
+
+    public function delete(Product $product)
+    {
+        $cart = \Session::get('cart');
+        unset($cart[$product->id]);
+        \Session::put('cart',$cart);
+        \Session::flash('message','Elemento removido Correctamente');
+        return redirect()->route('cart-show');
     }
 
 

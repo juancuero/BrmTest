@@ -25,7 +25,7 @@
                         <img class="img-responsive" src="http://placehold.it/100x70">
                       </div>
                       <div class="col-md-4">
-                        <h4 class="product-name"><strong>{{$product->name}}</strong></h4><h4><small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        <h4 class="product-name"><strong>{{$product->name}}</strong><small class="text-muted">({{$product->total}} Units available)</small></h4><h4><small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua.</small></h4>
                       </div>
                       <div class="col-md-6 ">
@@ -37,12 +37,12 @@
                             <h2><span class="text-muted">x</span></h2>
                           </div>
                           <div class="col-md-4 text-center">
-                            <input type="text" class="form-control input-sm col-md-8" value="1" >
+                            <input type="text" class="form-control input-sm col-md-8 totalProduct" name="{{$product->id}}" value="1" data-price="{{$product->price}}" data-total="{{$product->total}}" onchange="total();">
                           </div>
                           <div class="col-md-2">
-                            <button type="button" class="btn btn-danger btn-xs">
+                            <a href="{{ route('cart-delete', $product->id) }}" class="btn btn-danger btn-xs">
                               <i class="fa fa-trash-o"></i>
-                            </button>
+                            </a>
                           </div>
                         </div>  
                       </div>
@@ -53,7 +53,7 @@
                 <div class="card-footer">
                   <div class="row text-center">
                     <div class="col-md-9">
-                      <h4 class="text-right">Total <strong>$50.00</strong></h4>
+                      <h4 class="text-right">Total <strong id="total"></strong></h4>
                     </div>
                     <div class="col-md-3">
                       <button type="button" class="btn btn-success btn-block">
@@ -68,6 +68,6 @@
 </div>
 
 @section('scripts')
-
+<script src="{{ asset('/js/cart.js')}}"></script>
 @endsection
 @endsection

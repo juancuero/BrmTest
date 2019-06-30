@@ -18,7 +18,8 @@ class InventoryController extends Controller
     public function index()
     {
         
-        
+        $x =InventoryController::getQuantityAvailableByProductAndPrice(1,1600);
+        dd($x);
 
     }
 
@@ -117,9 +118,31 @@ class InventoryController extends Controller
                                     ->join('inventories AS i', 'p.id', '=', 'i.product_id')
                                     ->select('p.id','p.name','i.price', DB::raw('SUM(quantity) as total'))
                                     ->whereDate('i.expiration', '>=',$date)
+                                    ->where('i.quantity','>',0)
                                     ->groupBy('p.id','p.name','i.price')
                                     ->get();
          return $products;
+    }
+
+    static function getQuantityAvailableByProductAndPrice($product_id,$price)
+    {
+        $date = Carbon::now()->addDays(10);
+        $inventoryProduct = null;
+        $quantity = 0;
+        $inventoryProduct = DB::table('products AS p')
+                                    ->join('inventories AS i', 'p.id', '=', 'i.product_id')
+                                    ->select('p.id','p.name','i.price', DB::raw('SUM(quantity) as total'))
+                                    ->whereDate('i.expiration', '>=',$date)
+                                    ->where('p.id',$product_id)
+                                    ->where('i.price',$price)
+                                    ->groupBy('p.id','p.name','i.price')
+                                    ->first();
+
+        if ($inventoryProduct != null) {
+            $quantity = $inventoryProduct->total;
+        }
+
+        return (int) $quantity;
     }
 
     public function discountInventory($product_id,$price,$cant)
