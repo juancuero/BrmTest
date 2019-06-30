@@ -18,8 +18,7 @@ class InventoryController extends Controller
     public function index()
     {
         
-        $x =InventoryController::getQuantityAvailableByProductAndPrice(1,1600);
-        dd($x);
+        
 
     }
 
@@ -145,8 +144,9 @@ class InventoryController extends Controller
         return (int) $quantity;
     }
 
-    public function discountInventory($product_id,$price,$cant)
+    static function discountInventory($product_id,$price,$cant)
     {
+        
         $date = Carbon::now()->addDays(10);
         $inventoryProduct = Inventory::where('product_id',$product_id)
                         ->where('price',$price)
@@ -156,6 +156,8 @@ class InventoryController extends Controller
 
         $inventoryProduct->quantity = $inventoryProduct->quantity - $cant;
         $inventoryProduct->save();
+
+        return $inventoryProduct;
     }
 
 }

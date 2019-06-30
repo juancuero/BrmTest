@@ -22,7 +22,8 @@ function total(){
             var totalProduct=$(this).val() * price ;
         total += totalProduct;
     });
-    $('#total').html("$"+ total);    
+    $('#total').html("$"+total);    
+    $('#totalAux').val(total);    
 }
 
 

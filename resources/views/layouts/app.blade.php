@@ -9,8 +9,7 @@
 
     <title>{{ config('app.name', 'BRM -TEST') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -34,15 +33,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                            
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         <li class="nav-item">
                                 <a class="nav-link" href="{{ route('cart-show') }}"><i class="fa fa-cart-plus"></i> My Cart</a>
                         </li>
+
+                        <li class="nav-item">
+                                <a class="nav-link" href="{{ route('invoices.index') }}"><i class="fa fa-list"></i> My Shoppings</a>
+                        </li>
+                        
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -56,7 +59,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                   <i class="fa fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

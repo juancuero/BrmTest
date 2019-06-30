@@ -18,6 +18,8 @@
                   </div>
                 </div>
 
+              <form action="{{ route('cart-checkout') }}" method="POST">
+                {{csrf_field()}}
                 <div class="card-body">
                   @foreach ($cart as $product)   
                     <div class="row">
@@ -31,7 +33,7 @@
                       <div class="col-md-6 ">
                         <div class="row">
                           <div class="col-md-4 text-center">
-                            <input type="text" class="form-control input-sm col-md-8" value="$ {{$product->price}}" readonly>
+                            <input type="text" class="form-control input-sm col-md-8" name="price{{$product->id}}" value="${{$product->price}}" readonly>
                           </div>
                           <div class="col-md-2 ">
                             <h2><span class="text-muted">x</span></h2>
@@ -53,15 +55,17 @@
                 <div class="card-footer">
                   <div class="row text-center">
                     <div class="col-md-9">
+                      <input type="hidden" id="totalAux" name="totalAux">
                       <h4 class="text-right">Total <strong id="total"></strong></h4>
                     </div>
                     <div class="col-md-3">
-                      <button type="button" class="btn btn-success btn-block">
+                      <button type="submit" class="btn btn-success btn-block">
                         <i class="fa fa-share"></i> Checkout
                       </button>
                     </div>
                   </div>
                 </div>
+              </form>
             </div>
         </div>
     </div>
