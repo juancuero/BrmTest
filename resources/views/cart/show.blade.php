@@ -39,7 +39,10 @@
                             <h2><span class="text-muted">x</span></h2>
                           </div>
                           <div class="col-md-4 text-center">
-                            <input type="text" class="form-control input-sm col-md-8 totalProduct" name="{{$product->id}}" value="1" data-price="{{$product->price}}" data-total="{{$product->total}}" onchange="total();">
+                            <input type="number" class="form-control input-sm col-md-8 totalProduct" name="{{$product->id}}" value="1" data-price="{{$product->price}}" data-total="{{$product->total}}" onchange="total();" required>
+                            <span id="div_error" role="alert" style="color: red; display: none;">
+                                        <strong id="error"></strong>
+                            </span>
                           </div>
                           <div class="col-md-2">
                             <a href="{{ route('cart-delete', $product->id) }}" class="btn btn-danger btn-xs">
@@ -59,7 +62,7 @@
                       <h4 class="text-right">Total <strong id="total"></strong></h4>
                     </div>
                     <div class="col-md-3">
-                      <button type="submit" class="btn btn-success btn-block">
+                      <button type="submit" id="checkout" class="btn btn-success btn-block">
                         <i class="fa fa-share"></i> Checkout
                       </button>
                     </div>

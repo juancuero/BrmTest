@@ -23,25 +23,27 @@
      
     });
 
-    $('.este').on('click',function(){
-        alert("llega");
-    });
  });
 
-
+var cont = 0;
  function addRow()
     {
-
+        
         var tr='<tr>'+
-        '<td><input type="text" name="product_id[]" class="form-control" required=""></td>'+
-        '<td><input type="text" name="lot[]" class="form-control"></td>'+
-        '<td><input type="text" name="quantity[]" class="form-control quantity" required=""></td>'+
-        '<td><input type="text" name="price[]" class="form-control price"></td>'+
+        '<td><select id="select-products-'+cont+'" class="form-control" required name="product_id[]"></select></td>'+
+        '<td><input type="number" name="lot[]" class="form-control"></td>'+
+        '<td><input type="number" name="quantity[]" class="form-control quantity" required=""></td>'+
+        '<td><input type="number" name="price[]" class="form-control price"></td>'+
         '<td><input type="date" name="expiration[]" class="form-control"></td>'+
-        ' <td><input type="text" name="totalProduct[]" class="form-control totalProduct"></td>'+
+        ' <td><input type="number" name="totalProduct[]" class="form-control totalProduct"></td>'+
         '<td><a href="#" class="btn btn-danger remove"><i class="fa fa-trash"></i></a></td>'+
         '</tr>';
         $('tbody').append(tr);
+        
+        var $options = $("#select-products > option").clone();
+        $('#select-products-'+cont).append($options);
+        cont++;
+
     };
 
 

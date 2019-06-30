@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Invoice;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class InvoiceController extends Controller
 {
@@ -12,6 +13,13 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+       $this->middleware(['auth']);
+      
+    }
+
     public function index(Request $request)
     {
         $invoices = $request->user()->invoices()->get();
@@ -47,7 +55,11 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        dd($invoice,"show");
+        
+        
+        $pdf = PDF::loadView('invoices.invoice_pdf', compact('invoice'));
+
+        return $pdf->stream('invoice.pdf');
     }
 
     /**

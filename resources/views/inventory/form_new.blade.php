@@ -18,23 +18,30 @@
                              <table class="table table-bordered">
                                  <thead>
                                      <tr>
-                                         <th>Product Name</th>
+                                         <th width="25%">Product Name</th>
                                          <th>Lot</th>
-                                         <th>Quantity</th>
+                                         <th width="10%">Quantity</th>
                                          <th>Price (COP)</th>
-                                         <th>Expiration</th>
+                                         <th width="10%">Expiration</th>
                                          <th>Total Product</th>
-                                         <th><a href="#" class="addRow" onclick="addRow();"><i class="fa fa-plus"></i> New</a></th>
+                                         <th><a href="#" class="addRow" onclick="addRow();"><i class="fa fa-plus"></i> New row</a></th>
                                      </tr>
                                  </thead>
                                  <tbody>
                                      <tr>
-                                     <td><input type="text" name="product_id[]" class="form-control" required=""></td>
-                                     <td><input type="text" name="lot[]" class="form-control"></td>    
-                                       <td><input type="text" name="quantity[]" class="form-control quantity" required=""></td>
-                                       <td><input type="text" name="price[]" class="form-control price"></td>
-                                       <td><input type="date" name="expiration[]" class="form-control"></td>
-                                       <td><input type="text" name="totalProduct[]" class="form-control totalProduct"></td>
+                                     <td>
+                                            <select id="select-products" class="form-control" required name="product_id[]">
+                                                    <option value=""> Select product </option>
+                                                @foreach($products as $product)
+                                                    <option value="{{$product->id}}"> {{$product->name}} </option>
+                                                @endforeach
+                                            </select>
+                                     </td>
+                                     <td><input type="number" name="lot[]" class="form-control" required></td>    
+                                       <td><input type="number" name="quantity[]" class="form-control quantity" required=""></td>
+                                       <td><input type="number" name="price[]" class="form-control price" required></td>
+                                       <td><input type="date" name="expiration[]" class="form-control" required></td>
+                                       <td><input type="number" name="totalProduct[]" class="form-control totalProduct" readonly></td>
                                      <td><a href="#" class="btn btn-danger remove"><i class="fa fa-trash"></i></a></td>
                                      </tr>
                                      </tr>

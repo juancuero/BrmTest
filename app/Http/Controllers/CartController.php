@@ -13,6 +13,7 @@ class CartController extends Controller
     {
         
         if(!\Session::has('cart')) \Session::put('cart',array());
+        $this->middleware(['auth'])->only(['checkout']);
         
     }
 

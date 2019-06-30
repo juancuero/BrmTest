@@ -15,11 +15,18 @@ class InventoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+       $this->middleware(['auth'])->except(['welcome']);
+       $this->middleware(['admin'])->only(['index','create','store']);
+      
+    }
+
     public function index()
     {
         
-        
-
+        $products = Inventory::orderBy('id','desc')->paginate(5);
+        return view('inventory.index',compact('products'));
     }
 
     /**
@@ -27,9 +34,10 @@ class InventoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Product $product)
+    public function create()
     {
-        return view('inventory.form_new',compact('product'));
+        $products = Product::all();
+        return view('inventory.form_new',compact('products'));
     }
 
     /**
@@ -54,7 +62,7 @@ class InventoryController extends Controller
         }
 
         Inventory::insert($inventory);
-        
+        return redirect()->route('inventory.index')->with('message', 'Ok');
     }
 
     /**

@@ -41,10 +41,17 @@
                         <li class="nav-item">
                                 <a class="nav-link" href="{{ route('cart-show') }}"><i class="fa fa-cart-plus"></i> My Cart</a>
                         </li>
-
-                        <li class="nav-item">
-                                <a class="nav-link" href="{{ route('invoices.index') }}"><i class="fa fa-list"></i> My Shoppings</a>
-                        </li>
+                        @auth
+                            @if (Auth::user()->role == 2)
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('invoices.index') }}"><i class="fa fa-list"></i> My Shoppings</a>
+                            </li>
+                            @else
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('inventory.index') }}"><i class="fa fa-list"></i> Iventory</a>
+                            </li>
+                            @endif
+                        @endauth
                         
                         <!-- Authentication Links -->
                         @guest
