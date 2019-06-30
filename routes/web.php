@@ -23,3 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'InventoryController@welcome')->name('inventory.welcome');
 Route::resource('inventory','InventoryController');
 
+
+Route::get('cart/', 'CartController@show')->name('cart-show');
+Route::get('cart/add/{product}/{price}', 'CartController@add')->name('cart-add');

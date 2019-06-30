@@ -20,7 +20,7 @@
                               <h6 class="card-text text-center"> $ {{$product->price}} </h6>
                               <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                  <button type="button" class="btn btn-sm btn-success "><i class="fa fa-cart-plus fa-lg"></i> Add to Cart</button>
+                                  <a href="{{ route('cart-add', ['product' => $product->id,'price' => $product->price]) }}" class="btn btn-sm btn-success "><i class="fa fa-cart-plus fa-lg"></i> Add to Cart</a>
                                 </div>
                                 <small class="text-muted">{{$product->total}} Units available</small>
                               </div>
