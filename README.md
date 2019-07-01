@@ -40,7 +40,7 @@ Run the database migrations and default data
 
     php artisan migrate --seed
 
-This will create some products and a new user that you can use to sign in :
+This will create some products and a admin user that you can use to sign in :
 ```yml
 email: juan.cuero@unillanos.edu.co
 password: juan12345
